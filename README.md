@@ -185,6 +185,55 @@ skills/
 
 ---
 
+## When to Create a New Pattern
+
+> "If Claude makes any decision as a developer, I want to know what decision it is. And I want 95% of those decisions to already be documented in the codebase."
+
+A typical app has **50-250 patterns**. Not more, even in a large codebase. You should understand all of them.
+
+### Codify When:
+
+| Criteria | Example |
+|----------|---------|
+| **Reusable** (3+ future tasks) | "Mock TanStack Query hooks in component tests" |
+| **Non-obvious** | "Test React Server Components with async data" |
+| **Framework-specific** | "Zustand store with localStorage persistence" |
+| **Architectural** | "RLS policy pattern for company-scoped data" |
+| **Error-prone** | Common gotchas others will hit |
+
+### Do NOT Codify When:
+
+| Criteria | Example |
+|----------|---------|
+| **One-off** | Specific to single feature |
+| **Trivial** | "Use ESLint", "add error handling" |
+| **Library docs** | "PapaParse has a streaming mode" |
+| **Too specific** | "Escape pipes in markdown tables for CSV preview" |
+| **Implementation detail** | Business logic, not reusable pattern |
+
+### Pattern Format (10-30 lines max)
+
+```markdown
+### [Pattern Name] (Task #ID)
+
+**Problem**: What problem does this solve?
+
+**Solution**: Brief explanation
+
+**Pattern**:
+\`\`\`typescript
+// One clear example
+\`\`\`
+
+**When to use**: Conditions/scenarios
+```
+
+> **Rule of thumb**: If you debate whether to codify for >1 minute, skip it. Truly valuable patterns are obvious.
+
+**Full documentation**: See `skills/tdd-agent/codify/antipatterns.md` for detailed examples of what NOT to document.
+
+---
+
 ## Contributing
 
 This is a core competency. We are investing heavily in improving these workflows.
@@ -193,7 +242,7 @@ This is a core competency. We are investing heavily in improving these workflows
 
 When you discover a reusable pattern during implementation:
 
-1. Check if it passes codification criteria (reusable, non-obvious, framework-specific)
+1. Apply the criteria above (reusable, non-obvious, framework-specific)
 2. Add to the appropriate skill file (10-30 lines per pattern)
 3. Include: Problem, Solution, When to Use, Example
 
