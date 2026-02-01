@@ -7,6 +7,84 @@
 
 ---
 
+## Goals
+
+This project supports three core goals of the N2O workflow repository:
+
+### 1. Demonstrate Engineering Depth
+
+> "The idea behind this repository is to impress the people with whom we engage on how thoughtful our process is."
+
+The dashboard makes our invisible process visible. When a client or partner sees:
+- Real-time task dependencies flowing through TDD phases
+- AI contribution metrics with maintained quality
+- Velocity data across projects
+
+...they understand we're not another body shop. We have institutional knowledge about 4-5x developer output, and we can prove it.
+
+### 2. Enable Multi-Engineer Collaboration
+
+As we scale beyond single-engineer projects, we need:
+- Visibility into who's working on what
+- Prevention of duplicate work (task claiming)
+- Shared understanding of project status
+
+This dashboard solves the coordination problem without adding process overhead.
+
+### 3. Compound Our Workflow Investment
+
+We're investing tens of thousands of hours into these workflows. The dashboard:
+- Provides data to improve the workflow (what's slow? what breaks?)
+- Makes onboarding faster (new engineers see the system working)
+- Creates an extensible foundation (adapters for any client's tools)
+
+---
+
+## Working With This Spec
+
+### Your Judgment First
+
+**Default to your own judgment.** You were hired because you're capable. Most decisions don't need approval:
+
+- Implementation details (which library, how to structure code)
+- UI/UX refinements within the spirit of the mockups
+- Bug fixes and edge case handling
+- Performance optimizations
+- Adding helpful features that don't change scope
+
+**Don't ask permission. Make good decisions and ship.**
+
+### Review Checkpoints
+
+There are only **two points** where we should review together:
+
+| Checkpoint | When | What We Review |
+|------------|------|----------------|
+| **Data Model** | Before writing code | Schema design, adapter interface, any changes to the canonical structure |
+| **Final Polish** | Before shipping | Overall UX, edge cases, anything that feels off |
+
+Everything between these checkpoints is yours to execute.
+
+### When to Escalate
+
+Escalate only when:
+
+1. **Scope change** — You discover we need something fundamentally different than spec'd
+2. **Blocked** — External dependency or access issue you can't resolve
+3. **Uncertainty with high stakes** — A decision that's hard to reverse and you're genuinely unsure
+
+**Do not escalate:**
+- "Is this the right approach?" — Try it, see if it works
+- "Should I use X or Y library?" — Pick one, we can change later
+- "This mockup doesn't cover edge case Z" — Handle it sensibly
+- "I found a better way to do this" — Great, do it
+
+### Questions Are Fine
+
+Asking questions is different from escalating. If you're curious about context or want to understand the "why" behind something, ask anytime. The goal is to avoid blocking yourself waiting for approval on things you can decide.
+
+---
+
 ## Vision
 
 Build an extensible workflow dashboard that visualizes our AI-powered development process. The dashboard serves two purposes:
