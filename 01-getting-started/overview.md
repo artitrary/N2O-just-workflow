@@ -70,3 +70,24 @@ A typical app has **50-250 patterns**. You should understand all of them.
 > **Rule of thumb**: If you debate whether to codify for >1 minute, skip it. Truly valuable patterns are obvious.
 
 See `02-agents/tdd-agent/codify/antipatterns.md` for detailed examples of what NOT to document.
+
+## Contributing
+
+This is a core competency. We are investing heavily in improving these workflows.
+
+### Adding Patterns
+
+When you discover a reusable pattern during implementation:
+
+1. Apply the criteria above (reusable, non-obvious, framework-specific)
+2. Add to the appropriate skill file (10-30 lines per pattern)
+3. Include: Problem, Solution, When to Use, Example
+
+### Improving Workflows
+
+When you find friction in the workflow:
+
+1. Document the issue in `.wm/`
+2. Propose a change to the relevant SKILL.md
+3. Test the change over 2-3 sprints
+4. Merge if it improves velocity
