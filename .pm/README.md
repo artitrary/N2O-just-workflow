@@ -18,9 +18,12 @@ instead of markdown checklists.
 - **`tasks.db`** is gitignored (local state, no merge conflicts)
 - The database is regenerated from seeds when needed
 
-## Common Commands
+**Note**: An example sprint is included at `todo/example-sprint/` showing
+the expected format. When you run `/pm-agent`, it creates new sprint folders
+here automatically.
 
-\`\`\`bash
+## Common Commands
+```bash
 # Initialize database
 sqlite3 .pm/tasks.db < .pm/schema.sql
 
@@ -35,7 +38,7 @@ sqlite3 .pm/tasks.db "SELECT * FROM sprint_progress;"
 
 # Reset database
 rm .pm/tasks.db && sqlite3 .pm/tasks.db < .pm/schema.sql
-\`\`\`
+```
 
 ## Schema Overview
 
