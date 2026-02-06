@@ -23,6 +23,23 @@ through a shared SQLite task database. Achieves 4-5x productivity gains — see
 | [`.pm/`](./.pm/) | SQLite schema, sprint specs, task seeds |
 | [`specs/`](./specs/) | Product specifications |
 
+## Quick Start
+```bash
+# 1. Create directories
+mkdir -p .pm/todo .wm
+
+# 2. Initialize task database
+sqlite3 .pm/tasks.db < .pm/schema.sql
+
+# 3. Start planning
+/pm-agent create a spec for [your feature]
+
+# 4. Start implementing
+/tdd-agent
+```
+
+See [`01-getting-started/`](./01-getting-started/) for detailed setup and workflow guides.
+
 ## For AI Agents
 
 See [CLAUDE.md](./CLAUDE.md) for agent instructions.
