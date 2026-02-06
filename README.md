@@ -1,32 +1,32 @@
-# N2O AI Development Workflow
+# N2O AI Development Workflows
 
-A Claude Code workflow that uses three AI agents to plan, build, and debug software. Achieves 4-5x developer productivity.
-
-For why this matters and the strategic value, see [BENEFITS.md](./BENEFITS.md).
+A multi-agent development system that coordinates planning, implementation, and debugging
+through a shared SQLite task database. Achieves 4-5x productivity gains — see
+[BENEFITS.md](./BENEFITS.md) for why N2O is investing in this.
 
 ## The Three Agents
 
-| Agent | Command | What it does |
-|-------|---------|--------------|
-| PM Agent | `/pm-agent` | Plans features, writes specs, creates tasks |
-| TDD Agent | `/tdd-agent` | Implements code using test-driven development |
-| Bug Workflow | `/bug-workflow` | Investigates and fixes bugs |
+| Agent | Purpose | Invoke |
+|-------|---------|--------|
+| **pm-agent** | Sprint planning, spec writing, task breakdown | `/pm-agent` |
+| **tdd-agent** | TDD implementation with automated auditing | `/tdd-agent` |
+| **bug-workflow** | Root cause investigation and debugging | `/bug-workflow` |
 
-## Directory Map
-```
-01-getting-started/   ← Read first (setup + how it works)
-02-agents/            ← The three agents (use daily)
-03-patterns/          ← React/Next.js reference patterns (look up as needed)
-scripts/              ← Git automation
-.pm/                  ← Task database infrastructure
-specs/                ← Feature specifications
-```
+## Repository Structure
 
-## Quick Start
+| Directory | What's in it |
+|-----------|-------------|
+| `01-getting-started/` | Overview, workflow, quickstart, setup |
+| `02-agents/` | Agent skill definitions (pm, tdd, bug) |
+| `03-patterns/` | Coding standards (React, web design) |
+| `scripts/` | Git commit automation |
+| `.pm/` | SQLite schema, sprint specs, task seeds |
+| `specs/` | Product specifications |
 
-1. **Install Claude Code** — `irm https://claude.ai/install.ps1 | iex` (Windows) or `curl -fsSL https://claude.ai/install.sh | bash` (Mac/Linux)
-2. **Set up your project** — See [01-getting-started/setup.md](./01-getting-started/setup.md)
-3. **Start planning** — Run `/pm-agent create a spec for [your feature]`
-4. **Start building** — Run `/tdd-agent`
+## For AI Agents
 
-For full details, start with [01-getting-started/overview.md](./01-getting-started/overview.md).
+See [CLAUDE.md](./CLAUDE.md) for agent instructions.
+
+## License
+
+Proprietary. N2O internal use only.
