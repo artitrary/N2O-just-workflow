@@ -52,12 +52,12 @@ sqlite3 .pm/tasks.db "UPDATE tasks SET status = 'done' WHERE sprint = 'crm-found
 
 ### Before You Start
 
-**Read `CLAUDE.md`** for repo context:
-- Database: Neon database on development branch (connection string in `DATABASE_URL_DEV`)
-- Database access: `psql $DATABASE_URL_DEV` or use Neon SQL Editor at https://console.neon.tech
-- Migration commands: `cd packages/database && pnpm migrate:dev` (or `pnpm --filter @repo/database migrate:dev`)
-- Test commands: Your project's test commands (e.g., `pnpm test`, `pnpm typecheck`)
-- Quality checks: Your project's quality commands (e.g., `pnpm lint`, `pnpm typecheck`)
+**Read `CLAUDE.md`** for repo context, and **read `.pm/config.json`** for project commands:
+- Test command: `$(jq -r '.commands.test' .pm/config.json)`
+- Typecheck command: `$(jq -r '.commands.typecheck' .pm/config.json)`
+- Lint command: `$(jq -r '.commands.lint' .pm/config.json)`
+- Build command: `$(jq -r '.commands.build' .pm/config.json)`
+- Database config: see `database` field in `.pm/config.json` and `CLAUDE.md`
 
 **Don't assume** - verify with actual commands before claiming something works or doesn't work.
 
@@ -468,17 +468,17 @@ Check the relevant skill for patterns:
 
 ### Step 1: Run Quality Checks (Required)
 
-**Always run first**:
+**Always run first** (commands from `.pm/config.json`):
 
 ```bash
-pnpm typecheck:all  # Must pass (zero errors)
-pnpm lint:all       # Must pass (zero warnings)
+$(jq -r '.commands.typecheck' .pm/config.json)  # Must pass (zero errors)
+$(jq -r '.commands.lint' .pm/config.json)        # Must pass (zero warnings)
 ```
 
 **For significant changes**:
 
 ```bash
-pnpm build  # Must succeed
+$(jq -r '.commands.build' .pm/config.json)  # Must succeed
 ```
 
 **If checks fail**: **STOP**. Fix all errors before proceeding to subagent audits.
@@ -1113,22 +1113,22 @@ sqlite3 .pm/tasks.db "SELECT id, title, done_when FROM available_tasks WHERE spr
 # - "should parse headers correctly" → REAL! Keep it.
 # Rewrite 2 fake tests to verify behavior instead
 
-pnpm test packages/core  # All fail ✓ (19 real tests, removed 2 fake ones)
+$N2O_TEST_CMD packages/core  # All fail ✓ (19 real tests, removed 2 fake ones)
 sqlite3 .pm/tasks.db "UPDATE tasks SET status = 'red' WHERE id = 1;"
 
 # 3. GREEN: Implement
 # ... write parseCSV function in index.ts
-pnpm test packages/core  # All pass ✓
+$N2O_TEST_CMD packages/core  # All pass ✓
 sqlite3 .pm/tasks.db "UPDATE tasks SET status = 'green' WHERE id = 1;"
 
 # 4. REFACTOR: Clean up
 # ... improve naming, extract constants
-pnpm test packages/core  # Still pass ✓
+$N2O_TEST_CMD packages/core  # Still pass ✓
 
 # 5. AUDIT: Quality checks + 3 subagents
 # Step 1: Quality checks (must pass before subagents)
-pnpm typecheck:all  # Pass ✓
-pnpm lint:all       # Pass ✓
+$N2O_TYPECHECK_CMD  # Pass ✓
+$N2O_LINT_CMD       # Pass ✓
 
 # Step 2: Spin up 3 subagents in parallel
 # ... run parallel audits
